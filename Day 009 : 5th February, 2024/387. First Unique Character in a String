@@ -1,0 +1,34 @@
+#define NUM_LETTERS 26 
+#define LETTER_TO_INDEX 97 
+
+class Solution 
+{
+private: 
+    uint32_t abc[NUM_LETTERS]; 
+
+public:
+    int firstUniqChar(string s) 
+    {
+        size_t str_len = s.length(); 
+
+        // Make sure the letter counter array is reset 
+        memset((void *)abc, 0, sizeof(abc)); 
+
+        // Count the number of appearances of each letter/character 
+        for (size_t i = 0; i < str_len; i++)
+        {
+            abc[s[i] - LETTER_TO_INDEX] += 1; 
+        }
+
+        // Look for the first letter to only appear once. If there is none then return -1. 
+        for (size_t i = 0; i < str_len; i++)
+        {
+            if (abc[s[i] - LETTER_TO_INDEX] == 1)
+            {
+                return (int)i; 
+            }
+        }
+
+        return -1; 
+    }
+};
