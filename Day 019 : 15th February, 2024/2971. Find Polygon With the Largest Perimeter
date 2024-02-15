@@ -1,0 +1,27 @@
+class Solution {
+public:
+    long long largestPerimeter(vector<int>& nums) {
+        // This line makes cin and cout more efficient.
+        ios::sync_with_stdio(false);
+
+        // Sort the array in non-increasing order.
+        sort(nums.begin(), nums.end(), greater<int>());
+
+        // Try every possible longest side in the sorted array.
+        for (int i = 0; i < nums.size(); ++i) {
+            // Calculate the sum of the remaining numbers.
+            long long sum = 0;
+            for (int j = i + 1; j < nums.size(); ++j) {
+                sum += nums[j];
+            }
+            // If the sum of the remaining numbers is greater than the current number,
+            // then we can form a polygon. Return the perimeter.
+            if (sum > nums[i]) {
+                return sum + nums[i];
+            }
+        }
+
+        // If no valid polygon is found, return -1.
+        return -1;
+    }
+};
