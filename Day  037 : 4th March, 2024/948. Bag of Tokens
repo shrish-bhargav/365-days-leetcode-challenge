@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int bagOfTokensScore(vector<int>& tokens, int power) {
+        
+        int score = 0 ;
+        int max_score =0;                   //we initialized this to get max_score
+        int left = 0;
+        int right = tokens.size()-1;         //this is called "two-pointer" approach
+        sort(tokens.begin(),tokens.end());
+
+        while(left<=right) {
+            if(power>=tokens[left]){
+                score++;
+                power-=tokens[left];        // we are doing as the problem says
+                left++;
+                max_score = max(max_score, score);  //this line finds the maximum score
+            }else if(score>0) {
+                score--;
+                power+=tokens[right];               
+                right--;
+            }else{break;}
+        }
+        return max_score;                             //max_score is returned
+    }
+};
