@@ -1,18 +1,18 @@
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
-        unordered_map<char,char> m1,m2;
+        unordered_map<char,char> m1,m2;            //created two unordered maps namely m1 and m2
         int i=0,j=0;
-        while(i<s.length() and j<t.length()){
-            if(!m1.count(s[i]) and !m2.count(t[j])){
-                m1[s[i]]=t[j];
+        while(i<s.length() and j<t.length()){      //making sure that the whole of the string is checked and there is no buffer overflow.
+            if(!m1.count(s[i]) and !m2.count(t[j])){        //truthy and falsy values
+                m1[s[i]]=t[j];                        //mapping the values of s and t
                 m2[t[j]]=s[i];
             }
             else{
-                if(m1[s[i]]!=t[j] or m2[t[j]]!=s[i]) return false;
+                if(m1[s[i]]!=t[j] or m2[t[j]]!=s[i]) return false;    //checking if the strings are isomorphic, if not then returning false.
             }
-            i++;j++;
+            i++;j++;                            //increasing the counter to the next char
         }
-        return true;
+        return true;                               //by default it would return true
     }
 };
